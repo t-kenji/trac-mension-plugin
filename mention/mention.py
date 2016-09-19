@@ -26,10 +26,10 @@ class Mention(Component):
     def add_strategy(self):
         return {
             'id': 'mension',
-            'match': '/\B@(\w*)$/',
+            'match': '\B@(\w*)$',
             'candidates': self.users,
-            'template': 'function(mension) { return mension; }',
-            'replace': 'function(mension) { return "@" + mension + " "; }',
+            'template': 'return value',
+            'replace': 'return "@" + value + " "',
             'index': 1
         }
 
@@ -43,4 +43,4 @@ class Mention(Component):
             mention = match
             mention_syntax = tag.b(mention)
             return mention_syntax
-        yield (r"(?P<mention>@[^ ]+)", create_mention)
+        yield (r'\B(?P<mention>@[^ ]+)', create_mention)
