@@ -24,11 +24,20 @@ class Mention(Component):
     # IStrategyAdapter methods
 
     def add_strategy(self):
+        template = 'return value'
+
+        try:
+            from avatar.web_ui import AvatarProvider
+            if self.env.is_component_enabled(AvatarProvider):
+                template = 'return \'<img src="{}/avatar/\' + value + \'" style="vertical-align: text-bottom;" width="16" height="16" />\' + \'&nbsp;\' + value'.format(self.env.href())
+        except:
+            pass
+
         return {
             'id': 'mension',
             'match': '\B@(\w*)$',
             'candidates': self.users,
-            'template': 'return value',
+            'template': template,
             'replace': 'return "@" + value + " "',
             'index': 1
         }
