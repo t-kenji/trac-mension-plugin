@@ -1,7 +1,7 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-version='0.1'
+version='0.2'
 
 setup(
     name='TracMentionPlugin',
@@ -17,7 +17,11 @@ setup(
         'TracAutocompletePlugin',
     ],
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    include_package_data=True,
+    package_data = {
+        'tracmention': [
+            'htdocs/css/*.css',
+        ]
+    },
     entry_points = {
         'trac.plugins': [
             'mention = tracmention'

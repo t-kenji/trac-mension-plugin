@@ -1,1 +1,1 @@
-from mention import Mention
+from mention import MentionModule
